@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NoteCore - Digital notes platform for competitive exam preparation">
+    <title>NoteCore | Study Smarter. Revise Better.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="#home" class="logo" onclick="showSection('home')">
+            <span class="logo-icon">N</span>
+            <span>Note<span>Core</span></span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+            ☰
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="#home" class="nav-link active" data-section="home">Home</a>
+            <a href="#subjects" class="nav-link" data-section="subjects">Subjects</a>
+            <a href="#current-affairs" class="nav-link" data-section="current-affairs">Current Affairs</a>
+            <a href="#bookmarks" class="nav-link" data-section="bookmarks">Bookmarks</a>
+            <a href="#about" class="nav-link" data-section="about">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="nav-search">
+                <span>⌕</span>
+                <input
+                    type="text"
+                    id="globalSearch"
+                    placeholder="Search notes..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <button class="profile-btn" title="Student Profile">
+                <span>👤</span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+<main>
+
+<!-- =========================
+     HOME
+========================= -->
+<section id="home" class="page-section active-section">
+
+    <div class="hero">
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span>✦</span>
+                Built for Competitive Exam Aspirants
+            </div>
+
+            <h1>
+                Study Smarter.<br>
+                <span>Revise Better.</span><br>
+                Crack Your Exam.
+            </h1>
+
+            <p>
+                Your complete digital notes library for competitive exam
+                preparation. Learn, revise, bookmark and organize everything
+                in one place.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="showSection('subjects')">
+                    Explore Notes <span>→</span>
+                </button>
+
+                <button class="btn btn-secondary" onclick="openRandomNote()">
+                    Start Learning <span>▶</span>
+                </button>
+            </div>
+
+            <div class="exam-tags">
+                <span>UPSC</span>
+                <span>SSC</span>
+                <span>Banking</span>
+                <span>Railway</span>
+                <span>CDS</span>
+                <span>NDA</span>
+                <span>State PSC</span>
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+            <div class="floating-card card-one">
+                <span>📚</span>
+                <div>
+                    <strong>Smart Notes</strong>
+                    <small>Organized by subject</small>
+                </div>
+            </div>
+
+            <div class="dashboard-preview">
+
+                <div class="preview-top">
+                    <div>
+                        <small>Today's Progress</small>
+                        <strong>68%</strong>
+                    </div>
+                    <div class="progress-ring">68%</div>
+                </div>
+
+                <div class="preview-line">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="preview-subject">
+                    <span class="mini-icon">📖</span>
+                    <div>
+                        <strong>Indian Polity</strong>
+                        <small>12 notes completed</small>
+                    </div>
+                    <span class="check">✓</span>
+                </div>
+
+                <div class="preview-subject">
+                    <span class="mini-icon">🔢</span>
+                    <div>
+                        <strong>Quantitative Aptitude</strong>
+                        <small>8 notes completed</small>
+                    </div>
+                    <span class="check">✓</span>
+                </div>
+
+                <div class="preview-subject">
+                    <span class="mini-icon">🌍</span>
+                    <div>
+                        <strong>General Knowledge</strong>
+                        <small>15 notes available</small>
+                    </div>
+                    <span class="arrow">→</span>
+                </div>
+
+            </div>
+
+            <div class="floating-card card-two">
+                <span>🔖</span>
+                <div>
+                    <strong>Quick Revision</strong>
+                    <small>Your bookmarks</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- STATISTICS -->
+    <div class="stats-section">
+
+        <div class="stat-card">
+            <div class="stat-icon purple">📚</div>
+            <div>
+                <span>Total Subjects</span>
+                <strong id="statSubjects">16</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon blue">📝</div>
+            <div>
+                <span>Total Notes</span>
+                <strong id="statNotes">0</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon orange">📰</div>
+            <div>
+                <span>Current Affairs</span>
+                <strong id="statCurrentAffairs">10</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon green">🔖</div>
+            <div>
+                <span>Bookmarked</span>
+                <strong id="statBookmarks">0</strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- FEATURED SUBJECTS -->
+    <div class="content-container">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">EXPLORE</span>
+                <h2>Popular Subjects</h2>
+                <p>Start your preparation with organized exam notes.</p>
+            </div>
+
+            <button class="text-btn" onclick="showSection('subjects')">
+                View All Subjects →
+            </button>
+        </div>
+
+        <div class="subject-grid" id="homeSubjectGrid"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SUBJECTS
+========================= -->
+<section id="subjects" class="page-section">
+
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">NOTE LIBRARY</span>
+            <h1>All Subjects</h1>
+            <p>Choose a subject and start revising.</p>
+        </div>
+
+        <div class="subject-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="language">Language</button>
+            <button class="filter-btn" data-filter="quant">Quant</button>
+            <button class="filter-btn" data-filter="general">General</button>
+            <button class="filter-btn" data-filter="banking">Banking</button>
+        </div>
+    </div>
+
+    <div class="subject-grid full-grid" id="subjectGrid"></div>
+
+</section>
+
+
+<!-- =========================
+     NOTES
+========================= -->
+<section id="notes" class="page-section">
+
+    <div class="notes-header">
+
+        <button class="back-btn" onclick="showSection('subjects')">
+            ← Back to Subjects
+        </button>
+
+        <div class="subject-title-area">
+            <div class="large-subject-icon" id="selectedSubjectIcon">📚</div>
+
+            <div>
+                <span class="eyebrow">SUBJECT NOTES</span>
+                <h1 id="selectedSubjectName">Subject</h1>
+                <p id="selectedSubjectDescription"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="notes-toolbar">
+        <div class="notes-search">
+            <span>⌕</span>
+            <input
+                type="text"
+                id="notesSearch"
+                placeholder="Search within this subject..."
+            >
+        </div>
+
+        <span id="notesCount"></span>
+    </div>
+
+    <div class="notes-list" id="notesList"></div>
+
+</section>
+
+
+<!-- =========================
+     NOTE VIEWER
+========================= -->
+<section id="note-viewer" class="page-section">
+
+    <div class="reading-container">
+
+        <button class="back-btn" onclick="goBackFromNote()">
+            ← Back to Notes
+        </button>
+
+        <article class="note-article">
+
+            <div class="note-meta">
+                <span id="viewerSubject">Subject</span>
+                <span>•</span>
+                <span id="viewerTopic">Topic</span>
+            </div>
+
+            <div class="note-title-row">
+                <div>
+                    <h1 id="viewerTitle">Note Title</h1>
+                    <p id="viewerDescription"></p>
+                </div>
+
+                <button
+                    class="bookmark-large"
+                    id="viewerBookmark"
+                    onclick="toggleCurrentBookmark()"
+                    title="Bookmark note"
+                >
+                    🔖
+                </button>
+            </div>
+
+            <div class="note-divider"></div>
+
+            <div class="note-body" id="viewerContent"></div>
+
+            <div class="exam-tip-box">
+                <div class="tip-icon">💡</div>
+                <div>
+                    <strong>Exam Tip</strong>
+                    <p id="viewerExamTip"></p>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOOKMARKS
+========================= -->
+<section id="bookmarks" class="page-section">
+
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">YOUR LIBRARY</span>
+            <h1>Bookmarked Notes</h1>
+            <p>Keep important notes ready for quick revision.</p>
+        </div>
+    </div>
+
+    <div id="bookmarkList" class="notes-list"></div>
+
+</section>
+
+
+<!-- =========================
+     CURRENT AFFAIRS
+========================= -->
+<section id="current-affairs" class="page-section">
+
+    <div class="page-header">
+        <div>
+            <span class="eyebrow">STAY UPDATED</span>
+            <h1>Current Affairs</h1>
+            <p>Important categories for competitive examinations.</p>
+        </div>
+    </div>
+
+    <div class="ca-categories">
+
+        <button class="ca-category active" data-category="All">
+            <span>📰</span>
+            All
+        </button>
+
+        <button class="ca-category" data-category="National">
+            <span>🇮🇳</span>
+            National
+        </button>
+
+        <button class="ca-category" data-category="International">
+            <span>🌐</span>
+            International
+        </button>
+
+        <button class="ca-category" data-category="Banking & Economy">
+            <span>🏦</span>
+            Banking & Economy
+        </button>
+
+        <button class="ca-category" data-category="Science & Technology">
+            <span>🔬</span>
+            Science & Technology
+        </button>
+
+        <button class="ca-category" data-category="Defence">
+            <span>🛡️</span>
+            Defence
+        </button>
+
+        <button class="ca-category" data-category="Sports">
+            <span>🏆</span>
+            Sports
+        </button>
+
+        <button class="ca-category" data-category="Awards">
+            <span>🏅</span>
+            Awards
+        </button>
+
+        <button class="ca-category" data-category="Government Schemes">
+            <span>📋</span>
+            Schemes
+        </button>
+
+        <button class="ca-category" data-category="Appointments">
+            <span>👤</span>
+            Appointments
+        </button>
+
+        <button class="ca-category" data-category="Important Reports">
+            <span>📊</span>
+            Reports
+        </button>
+
+    </div>
+
+    <div class="current-affairs-grid" id="currentAffairsGrid"></div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+<section id="about" class="page-section">
+
+    <div class="about-container">
+
+        <div class="about-hero">
+            <div class="about-logo">N</div>
+
+            <div>
+                <span class="eyebrow">ABOUT NOTecore</span>
+                <h1>Your Digital Study Companion</h1>
+
+                <p>
+                    NoteCore is designed to make competitive exam preparation
+                    more organized, accessible and efficient. Instead of
+                    searching through multiple files and folders, students
+                    can access their study material through one simple
+                    digital library.
+                </p>
+            </div>
+        </div>
+
+        <div class="about-features">
+
+            <div class="about-card">
+                <span>📚</span>
+                <h3>Organized Notes</h3>
+                <p>
+                    Keep important topics organized subject by subject.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span>🔎</span>
+                <h3>Quick Search</h3>
+                <p>
+                    Find notes and topics instantly using the search system.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span>🔖</span>
+                <h3>Smart Bookmarks</h3>
+                <p>
+                    Save important topics for quick revision anytime.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span>📱</span>
+                <h3>Responsive</h3>
+                <p>
+                    Study comfortably on desktop, tablet or mobile.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     SEARCH RESULTS OVERLAY
+========================= -->
+<div class="search-overlay" id="searchOverlay">
+
+    <div class="search-results-panel">
+
+        <div class="search-results-header">
+            <h3>Search Results</h3>
+            <button onclick="closeSearchResults()">×</button>
+        </div>
+
+        <div id="searchResults"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+<div class="toast" id="toast">
+    <span>✓</span>
+    <p id="toastMessage">Done</p>
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <div class="logo">
+                <span class="logo-icon">N</span>
+                <span>Note<span>Core</span></span>
+            </div>
+            <p>
+                Study smarter. Revise better. Crack your exam.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="#home" onclick="showSection('home')">Home</a>
+            <a href="#subjects" onclick="showSection('subjects')">Subjects</a>
+            <a href="#bookmarks" onclick="showSection('bookmarks')">Bookmarks</a>
+            <a href="#about" onclick="showSection('about')">About</a>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 NoteCore. Built for learners.
+        </div>
+
+    </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
